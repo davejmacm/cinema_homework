@@ -59,4 +59,22 @@ def save()
      values = [@title, @price, @id]
      SqlRunner.run(sql, values)
  end
+
+# end of crud functionality; below is lookup methods
+
+def customers()
+  sql = "SELECT customers.name
+        FROM customers
+        INNER JOIN tickets
+          ON tickets.customer_id = customers.id
+        WHERE tickets.film_id = $1"
+  values = [@id]
+  customers = SqlRunner.run(sql, values)
+  return customers.map{|customer| Customer.new(customer)}
+end
+
+
+
+
+
 end

@@ -59,4 +59,20 @@ def save()
      values = [@name, @funds, @id]
      SqlRunner.run(sql, values)
  end
+
+# end of crud functionality; below is lookup methods
+
+ def films()
+   sql = "SELECT films.title
+         FROM films
+         INNER JOIN tickets
+           ON tickets.film_id = films.id
+         WHERE tickets.customer_id = $1"
+   values = [@id]
+   films = SqlRunner.run(sql, values)
+   return films.map{|film| Film.new(film)}
+ end
+
+
+
 end

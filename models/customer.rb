@@ -73,6 +73,18 @@ def save()
    return films.map{|film| Film.new(film)}
  end
 
-
+ def tickets()
+  sql = "SELECT customers.name, count(tickets.customer_id) as number_of_tickets
+        FROM customers
+        LEFT JOIN tickets
+           on (customers.id = tickets.customer_id)
+        WHERE customers.id = $1
+        GROUP BY
+        	customers.id
+           "
+  values = [@id]
+  tickets = SqlRunner.run(sql, values)
+  return tickets.map{|ticket| Ticket.new(tickets)}
+ end
 
 end

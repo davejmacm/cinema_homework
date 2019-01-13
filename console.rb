@@ -14,14 +14,14 @@ Customer.delete_all()
 
 customer1 = Customer.new ({
   'name' => 'Dave',
-  'funds' => '12.50'
+  'funds' => '15.50'
   })
 
 customer1.save()
 
 customer2 = Customer.new ({
   'name' => 'Andy',
-  'funds' => '25.00'
+  'funds' => '20.00'
   })
 
 customer2.save()
@@ -69,6 +69,7 @@ ticket1 = Ticket.new ({
   })
 
 ticket1.save()
+# ticket1.cost()
 
 ticket2 = Ticket.new ({
   'customer_id' => customer1.id,
@@ -76,6 +77,7 @@ ticket2 = Ticket.new ({
   })
 
 ticket2.save()
+# ticket2.cost()
 
 ticket3 = Ticket.new ({
   'customer_id' => customer2.id,
@@ -83,6 +85,7 @@ ticket3 = Ticket.new ({
   })
 
 ticket3.save()
+# ticket3.cost()
 
 ticket4 = Ticket.new ({
   'customer_id' => customer3.id,
@@ -90,6 +93,7 @@ ticket4 = Ticket.new ({
   })
 
 ticket4.save()
+# ticket4.save()
 
 
 

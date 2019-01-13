@@ -60,4 +60,34 @@ def save()
      SqlRunner.run(sql, values)
  end
 
+ # end of crud functionality; below is lookup methods
+
+def cost()
+  sql = "UPDATE customers
+  SET funds = (SELECT customers.funds - films.price AS " "cost""
+        FROM customers
+        INNER JOIN tickets
+          ON tickets.customer_id = customers.id
+        INNER JOIN films
+          ON tickets.film_id = films.id
+		WHERE tickets.id = $1)
+    WHERE customers.id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+
+
+    # cost = SqlRunner.run(sql,values)
+    # # cannot get the value out of the hash
+    # cost_array  = []
+    # cost.each {|ticket| cost_array << ticket ["cost"].to_i}
+    # p cost
+    # sql = "UPDATE customers
+    # SET funds = #{cost}
+    # WHERE tickets.customer_id = customers.id"
+    # SqlRunner.run(sql)
+
+end
+
+
+
 end
